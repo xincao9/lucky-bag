@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.7</version>
+        <version>3.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>fun.golinks</groupId>
@@ -13,14 +13,16 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>lucky-bag</name>
     <description>幸运宝箱</description>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
     <dependencies>
         <dependency>
-            <groupId>com.lmax</groupId>
-            <artifactId>solana4j-json-rpc</artifactId>
-            <version>1.2.1</version>
+            <groupId>software.sava</groupId>
+            <artifactId>sava-core</artifactId>
+            <version>24.21.0</version>
+        </dependency>
+        <dependency>
+            <groupId>software.sava</groupId>
+            <artifactId>sava-rpc</artifactId>
+            <version>24.21.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
