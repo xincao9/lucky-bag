@@ -7,11 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import software.sava.core.accounts.PublicKey;
 import software.sava.core.accounts.Signer;
-import software.sava.rpc.json.http.SolanaNetwork;
 import software.sava.rpc.json.http.client.SolanaRpcClient;
 import software.sava.rpc.json.http.response.Lamports;
 
-import java.net.http.HttpClient;
 import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 
@@ -25,15 +23,9 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Long getBalance(String address) {
-        HttpClient httpClient = HttpClient.newHttpClient();
-        SolanaRpcClient rpcClient = SolanaRpcClient.createClient(
-                SolanaNetwork.MAIN_NET.getEndpoint(),
-                httpClient
-        );
-        CompletableFuture<Lamports> balance = rpcClient.getBalance(PublicKey.fromBase58Encoded(address));
-        Lamports lamports = null;
+        CompletableFuture<Lamports> balance = solanaRpcClient.getBalance(PublicKey.fromBase58Encoded(address));
         try {
-            lamports = balance.get();
+            Lamports lamports = balance.get();
             return lamports.asLong();
         } catch (Throwable e) {
             log.error("getBalance error", e);
